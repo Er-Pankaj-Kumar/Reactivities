@@ -19,7 +19,6 @@ export default class UserStore {
         try {
             const user = await agent.Account.login(creds);
             store.commonStore.setToken(user.token);
-            console.log(user);
             runInAction(() => this.user = user);
             history.push('/activities');
             store.modalStore.closeModal();
@@ -58,5 +57,9 @@ export default class UserStore {
     
     setImage = (image: string) => {
         if (this.user) this.user.image = image;
-    } 
+    }
+
+    setDisplayName = (name: string) => {
+        if (this.user) this.user.displayName = name;
+    }
 }
